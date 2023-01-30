@@ -31,10 +31,12 @@ app.use(auth);
 import userRoutes from './routes/api/users.js';
 import recipeRoutes from './routes/api/recipes.js';
 import postRoutes from './routes/api/posts.js';
+import commentRoutes from './routes/api/comments.js';
 
 app.use('/api/users', userRoutes);
 app.use('/api/recipes', recipeRoutes);
 app.use('/api/posts', postRoutes);
+app.use('/api', commentRoutes);
 // "catch all" route
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
