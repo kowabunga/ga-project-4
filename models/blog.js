@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import Comment from './comment';
+import Comment from './comment.js';
 
 const blogSchema = new Schema({
   title: {

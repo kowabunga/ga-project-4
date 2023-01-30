@@ -1,18 +1,16 @@
+import * as dotenv from 'dotenv'; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+dotenv.config();
+import 'dotenv/config.js';
 
-import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
-dotenv.config()
-import 'dotenv/config.js'
-
-
-import express from 'express'
-import { fileURLToPath } from 'url'
-import path, { dirname } from 'path'
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+import express from 'express';
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 import logger from 'morgan';
-import favicon  from 'serve-favicon';
+import favicon from 'serve-favicon';
 
-import './config/database.js'
+import './config/database.js';
 
 // Require controllers here
 const app = express();
@@ -26,15 +24,17 @@ app.use(express.json());
 // Configure the auth middleware
 // This decodes the jwt token, and assigns
 // the user information to req.user
-import auth from './config/auth.js'
+import auth from './config/auth.js';
 
-app.use(auth); 
+app.use(auth);
 // api routes must be before the "catch all" route
 import userRoutes from './routes/api/users.js';
+import recipeRoutes from './routes/api/recipes.js';
 
 app.use('/api/users', userRoutes);
+app.use('/api/recipes', recipeRoutes);
 // "catch all" route
-app.get('/*', function(req, res) {
+app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 

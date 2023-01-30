@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import Comment from './comment';
+import Comment from './comment.js';
 
 const recipeSchema = new Schema({
   ingredients: [
@@ -29,4 +29,4 @@ const recipeSchema = new Schema({
   comments: [Comment],
 });
 
-export default model('User', recipeSchema);
+export default model('Recipe', recipeSchema);
