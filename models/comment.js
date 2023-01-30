@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 
 const commentSchema = new Schema({
-  tite: {
+  title: {
     type: String,
   },
   content: {
