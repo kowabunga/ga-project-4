@@ -12,7 +12,7 @@ export default function Layout() {
     <>
       <nav
         className='navbar navbar-expand-sm'
-        style={{ backgroundColor: '#e3f2fd' }}
+        style={{ backgroundColor: '#A2D2FF' }}
       >
         <div className='container-fluid'>
           <Link to='/' className='navbar-brand'>
@@ -32,8 +32,18 @@ export default function Layout() {
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav ms-auto mb-2 mb-lg-0'>
               <li className='nav-item'>
-                <NavLink className='nav-link' aria-current='page' to='/'>
+                <NavLink className='nav-link' to='/'>
                   Home
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='/blog'>
+                  Blog
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='/recipes'>
+                  Recipes
                 </NavLink>
               </li>
               {!token ? (
