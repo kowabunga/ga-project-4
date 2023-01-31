@@ -6,5 +6,6 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 export const GET_TOKEN = 'GET_TOKEN';
 
 // RECIPES
-export const GET_RECIPES = 'GET_RECIPES';
-export const GET_RECIPE = 'GET_RECIPE';
+export const SET_RECIPES = 'SET_RECIPES';
+export const SET_RECIPE = 'SET_RECIPE';
+export const UPDATE_RECIPE = 'UPDATE_RECIPE';

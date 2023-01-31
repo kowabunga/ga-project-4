@@ -1,16 +1,17 @@
-import { GET_RECIPE, GET_RECIPES } from '../types';
+import { SET_RECIPE, SET_RECIPES, UPDATE_RECIPE } from '../types';
 
 export default (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_RECIPES:
+    case SET_RECIPES:
       return {
         ...state,
         recipes: payload,
       };
 
-    case GET_RECIPE:
+    case UPDATE_RECIPE:
+    case SET_RECIPE:
       return {
         ...state,
         recipe: payload,

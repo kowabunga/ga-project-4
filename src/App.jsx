@@ -9,10 +9,11 @@ import RecipesPage from './pages/RecipesPage/RecipesPage';
 import { useUserContext } from './context/users/userState';
 
 function App() {
-  const { token, getToken } = useUserContext();
+  const { token, getToken, getUser } = useUserContext();
 
   useEffect(() => {
     getToken();
+    getUser();
   }, [token]);
 
   return (
