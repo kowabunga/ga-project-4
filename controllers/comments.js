@@ -5,9 +5,9 @@ import Recipe from '../models/recipe.js';
 async function newRecipeComment(req, res) {
   try {
     const recipe = await Recipe.findById(req.params.id);
-    console.log(recipe);
 
     recipe.comments.push(req.body);
+
     await recipe.save();
     res.status(200).json(recipe);
   } catch (error) {
@@ -19,9 +19,9 @@ async function newRecipeComment(req, res) {
 async function newPostComment(req, res) {
   try {
     const post = await Post.findById(req.params.id);
-    console.log(post);
 
     post.comments.push(req.body);
+
     await post.save();
     res.status(200).json(post);
   } catch (error) {
@@ -35,6 +35,9 @@ async function editRecipeComment(req, res) {
     const recipe = await Recipe.find({ 'comments._id': req.params.id });
 
     if (!recipe) return res.status(400).json({ error: `Can't find comment` });
+
+    if (!recipe.user.equals(req.user._id))
+      return res.status(400).json({ error: 'User mismatch' });
 
     const commentIdx = recipe[0].comments.findIndex(comment =>
       comment._id.equals(req.params.id)
@@ -57,6 +60,9 @@ async function editPostComment(req, res) {
 
     if (!post) return res.status(400).json({ error: `Can't find comment` });
 
+    if (!post.user.equals(req.user._id))
+      return res.status(400).json({ error: 'User mismatch' });
+
     const commentIdx = post[0].comments.findIndex(comment =>
       comment._id.equals(req.params.id)
     );
@@ -78,6 +84,9 @@ async function deleteRecipeComment(req, res) {
 
     if (!recipe) return res.status(400).json({ error: `Can't find comment` });
 
+    if (!recipe.user.equals(req.user._id))
+      return res.status(400).json({ error: 'User mismatch' });
+
     const commentIdx = recipe[0].comments.findIndex(comment =>
       comment._id.equals(req.params.id)
     );
@@ -98,6 +107,9 @@ async function deletePostComment(req, res) {
     const post = await Post.find({ 'comments._id': req.params.id });
 
     if (!post) return res.status(400).json({ error: `Can't find comment` });
+
+    if (!post.user.equals(req.user._id))
+      return res.status(400).json({ error: 'User mismatch' });
 
     const commentIdx = post[0].comments.findIndex(comment =>
       comment._id.equals(req.params.id)

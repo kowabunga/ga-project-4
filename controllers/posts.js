@@ -57,6 +57,9 @@ async function edit(req, res) {
 
     if (!post) return res.status(400).json({ error: 'No post found' });
 
+    if (!post.user.equals(req.user._id))
+      return res.status(400).json({ error: 'User mismatch' });
+
     res.status(200).json(post);
   } catch (error) {
     console.log(error);
@@ -66,7 +69,12 @@ async function edit(req, res) {
 
 async function deletePost(req, res) {
   try {
-    await Post.findByIdAndDelete(req.params.id);
+    const post = await Post.findById(req.params.id);
+
+    if (!post.user.equals(req.user._id))
+      return res.status(400).json({ error: 'User mismatch' });
+
+    await post.delete();
 
     res.status(200).json({ msg: 'Post deleted' });
   } catch (error) {

@@ -57,6 +57,9 @@ async function edit(req, res) {
 
     if (!recipe) return res.status(400).json({ error: 'No recipe found' });
 
+    if (!recipe.user.equals(req.user._id))
+      return res.status(400).json({ error: 'User mismatch' });
+
     res.status(200).json(recipe);
   } catch (error) {
     console.log(error);
@@ -66,7 +69,12 @@ async function edit(req, res) {
 
 async function deleteRecipe(req, res) {
   try {
-    await Recipe.findOneAndDelete(req.params.id);
+    const recipe = await Recipe.findById(req.params.id);
+
+    if (!recipe.user.equals(req.user._id))
+      return res.status(400).json({ error: 'User mismatch' });
+
+    await recipe.delete();
 
     res.status(200).json({ msg: 'Recipe deleted' });
   } catch (error) {
