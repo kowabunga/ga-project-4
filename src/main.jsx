@@ -1,14 +1,17 @@
-import "vite/modulepreload-polyfill";
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css";
-import { BrowserRouter as Router } from "react-router-dom";
+import 'vite/modulepreload-polyfill';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+import { UserState } from './context/users/userState';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
-      <App />
+      <UserState>
+        <App />
+      </UserState>
     </Router>
   </React.StrictMode>
 );
