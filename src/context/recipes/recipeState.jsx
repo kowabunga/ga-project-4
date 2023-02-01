@@ -38,6 +38,26 @@ export function RecipeState({ children }) {
     }
   }
 
+  async function createRecipe(recipe) {
+    try {
+      const res = await fetch(`/api/recipes`, {
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        }),
+        body: JSON.stringify(recipe),
+      });
+      const data = await res.json();
+
+      dispatch({ type: SET_RECIPE, payload: data });
+      console.log(data);
+      return data._id;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function updateRecipe(updatedRecipe) {
     try {
       const res = await fetch(`/api/recipes/${id}`, {
@@ -68,7 +88,7 @@ export function RecipeState({ children }) {
 
   return (
     <RecipeContext.Provider
-      value={{ ...state, getAllRecipes, getRecipe, updateRecipe }}
+      value={{ ...state, getAllRecipes, getRecipe, updateRecipe, createRecipe }}
     >
       {children}
     </RecipeContext.Provider>

@@ -104,7 +104,7 @@ export default function SingleRecipePage() {
                       Title
                     </label>
                     <input
-                      type='title'
+                      type='text'
                       className='form-control'
                       value={title}
                       onChange={e => {
@@ -117,7 +117,7 @@ export default function SingleRecipePage() {
                       Comment
                     </label>
                     <input
-                      type='password'
+                      type='text'
                       className='form-control'
                       value={comment}
                       onChange={e => {
