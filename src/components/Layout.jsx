@@ -63,7 +63,7 @@ export default function Layout() {
           </div>
         </div>
       </nav>
-      <main className='container'>
+      <main className='container py-5'>
         <Outlet />
       </main>
     </>

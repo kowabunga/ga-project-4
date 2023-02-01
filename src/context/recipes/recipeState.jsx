@@ -1,11 +1,15 @@
 import { useReducer, createContext, useContext } from 'react';
 import RecipeReducer from './recipeReducer';
 
+import { useUserContext } from '../users/userState';
+
 import { SET_RECIPE, SET_RECIPES } from '../types';
 
 export const RecipeContext = createContext();
 
 export function RecipeState({ children }) {
+  const { token } = useUserContext();
+
   const initialState = {
     recipes: null,
     recipe: null,
@@ -40,8 +44,9 @@ export function RecipeState({ children }) {
         method: 'PUT',
         headers: new Headers({
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         }),
-        body: updateRecipe,
+        body: JSON.stringify(updateRecipe),
       });
       const data = await res.json();
       console.log(data);
