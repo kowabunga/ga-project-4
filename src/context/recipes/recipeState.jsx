@@ -25,7 +25,7 @@ export function RecipeState({ children }) {
     } catch (error) {
       console.log(error);
     }
-  }
+  } 
 
   async function getRecipe(id) {
     try {

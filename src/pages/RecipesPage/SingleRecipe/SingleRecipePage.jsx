@@ -26,7 +26,8 @@ export default function SingleRecipePage() {
   return (
     recipe && (
       <section>
-        <h1 className='display-5 text-center mb-5'>{recipe.title}</h1>
+        <h1 className='display-5 text-center'>{recipe.title}</h1>
+        <h5 className='text-center mb-5'>By {recipe.user.name}</h5>
         <div className='row'>
           <div className='col-12 col-lg-6'>
             <img
@@ -44,8 +45,8 @@ export default function SingleRecipePage() {
           <div className='col-12 col-lg-6'>
             <h2>Ingredients</h2>
             <ul>
-              {recipe.ingredients.map(ingredient => (
-                <li>{ingredient}</li>
+              {recipe.ingredients.map((ingredient, idx) => (
+                <li key={idx}>{ingredient}</li>
               ))}
             </ul>
           </div>
@@ -80,7 +81,6 @@ export default function SingleRecipePage() {
         <div
           className='modal fade'
           id='addCommentModel'
-          tabindex='-1'
           aria-labelledby='addCommentModel'
           aria-hidden='true'
         >

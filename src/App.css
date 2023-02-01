@@ -5,3 +5,20 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.custom-card {
+    height: 20rem;
+    width: 18rem;
+    text-decoration: none;
+    color: #000;
+}
+
+.custom-card img {
+    margin-bottom: 1rem;
+    width: 18rem;
+}
+
+.custom-card:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}s

@@ -2,7 +2,7 @@ import Post from '../models/post.js';
 
 async function allPosts(req, res) {
   try {
-    const posts = await Post.find({});
+    const posts = await Post.find({}).populate('user');
     if (!posts) return res.status(400).json({ error: 'Cannot find posts...' });
 
     res.status(200).json(posts);
@@ -14,7 +14,7 @@ async function allPosts(req, res) {
 
 async function getPostById(req, res) {
   try {
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id).populate('user');
 
     if (!post) return res.status(400).json({ error: 'No post found' });
 

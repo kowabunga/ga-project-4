@@ -11,6 +11,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import RecipesPage from './pages/RecipesPage/RecipesPage';
 import SingleRecipePage from './pages/RecipesPage/SingleRecipe/SingleRecipePage';
 import NewRecipePage from './pages/RecipesPage/NewRecipePage/NewRecipePage';
+import PostsPage from './pages/PostPage/PostsPage';
 
 function App() {
   const { token, getToken, getUser } = useUserContext();
@@ -28,6 +29,7 @@ function App() {
         <Route path='recipes' element={<RecipesPage />} />
         <Route path='recipes/:id' element={<SingleRecipePage />} />
         <Route path='recipes/create' element={<NewRecipePage />} />
+        <Route path='blogs' element={<PostsPage />} />
       </Route>
     </Routes>
   );

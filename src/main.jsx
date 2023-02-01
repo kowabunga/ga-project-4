@@ -6,13 +6,16 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import { UserState } from './context/users/userState';
 import { RecipeState } from './context/recipes/recipeState';
+import { PostState } from './context/posts/postState';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
       <UserState>
         <RecipeState>
-          <App />
+          <PostState>
+            <App />
+          </PostState>
         </RecipeState>
       </UserState>
     </Router>

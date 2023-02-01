@@ -34,7 +34,7 @@ export default function Layout() {
                 </NavLink>
               </li>
               <li className='nav-item'>
-                <NavLink className='nav-link' to='/blog'>
+                <NavLink className='nav-link' to='/blogs'>
                   Blog
                 </NavLink>
               </li>

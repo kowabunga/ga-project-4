@@ -13,6 +13,7 @@ const blogSchema = new Schema({
   comments: [Comment],
   user: {
     type: Schema.Types.ObjectId,
+    ref: 'User',
     required: true,
   },
   rating: {
