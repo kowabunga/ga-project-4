@@ -5,9 +5,9 @@ import Recipe from '../models/recipe.js';
 async function newRecipeComment(req, res) {
   try {
     const recipe = await Recipe.findById(req.params.id);
-
+    console.log(req.body);
     recipe.comments.push(req.body);
-
+    console.log(recipe.comments);
     await recipe.save();
     res.status(200).json(recipe);
   } catch (error) {

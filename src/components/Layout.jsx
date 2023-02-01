@@ -10,10 +10,7 @@ export default function Layout() {
 
   return (
     <>
-      <nav
-        className='navbar navbar-expand-sm'
-        style={{ backgroundColor: '#A2D2FF' }}
-      >
+      <nav className='navbar navbar-expand-sm '>
         <div className='container-fluid'>
           <Link to='/' className='navbar-brand'>
             <i className='fa-solid fa-bowl-food'></i>

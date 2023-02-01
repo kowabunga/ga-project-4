@@ -11,7 +11,8 @@ export default function RecipePage() {
 
   return (
     <section className='d-flex flex-wrap justify-content-evenly align-items-center'>
-      {recipes && recipes.map(recipe => <RecipeCard recipe={recipe} />)}
+      {recipes &&
+        recipes.map(recipe => <RecipeCard recipe={recipe} key={recipe._id} />)}
     </section>
   );
 }
