@@ -4,7 +4,7 @@ import Recipe from '../models/recipe.js';
 
 async function newRecipeComment(req, res) {
   try {
-    const recipe = await Recipe.findById(req.params.id);
+    const recipe = await Recipe.findById(req.params.id).populate('user');
 
     recipe.comments.push(req.body);
 

@@ -71,7 +71,7 @@ export default function SingleRecipePage() {
           )}
         </div>
         {/* MODAL FOR ADD COMMENT */}
-        <AddCommentModal user={user._id} recipe={recipe._id} isPost={false} />
+        <AddCommentModal user={user?._id} recipe={recipe._id} isPost={false} />
       </section>
     )
   );

@@ -90,7 +90,7 @@ export function RecipeState({ children }) {
     try {
       console.log(comment, recipeId);
 
-      const res = await fetch(`/api/recipe/${recipeId}/comments`, {
+      const res = await fetch(`/api/recipe/${recipeId}/comments`, { 
         method: 'POST',
         headers: new Headers({
           Authorization: `Bearer ${token}`,
