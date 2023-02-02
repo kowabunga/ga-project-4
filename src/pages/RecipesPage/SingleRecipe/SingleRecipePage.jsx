@@ -63,10 +63,11 @@ export default function SingleRecipePage() {
           {recipe.comments.length > 0 ? (
             <ul className='list-group list-group-flush'>
               {recipe.comments.map(comment => (
-                <Comment 
-                comment={comment} 
-                key={comment._id} 
-                user={user?._id} 
+                <Comment
+                  comment={comment}
+                  key={comment._id}
+                  user={user?._id}
+                  isPost={false}
                 />
               ))}{' '}
             </ul>

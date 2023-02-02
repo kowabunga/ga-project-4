@@ -76,10 +76,9 @@ export function PostState({ children }) {
     } catch (error) {
       console.log(error);
     }
-  }
+  } 
 
   async function deletePostComment(commentId) {
-    console.log(commentId);
     try {
       const res = await fetch(`/api/post/comments/${commentId}`, {
         method: 'DELETE',

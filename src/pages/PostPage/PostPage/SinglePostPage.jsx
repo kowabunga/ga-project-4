@@ -47,6 +47,7 @@ export default function SinglePostPage() {
                     comment={comment}
                     user={user?._id}
                     key={comment._id}
+                    isPost={true}
                   />
                 ))}{' '}
               </ul>
