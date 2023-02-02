@@ -90,7 +90,7 @@ export function RecipeState({ children }) {
     try {
       console.log(comment, recipeId);
 
-      const res = await fetch(`/api/recipe/${recipeId}/comments`, {
+      const res = await fetch(`/api/recipe/${recipeId}/comments`, { 
         method: 'POST',
         headers: new Headers({
           Authorization: `Bearer ${token}`,
@@ -108,24 +108,6 @@ export function RecipeState({ children }) {
     }
   }
 
-  async function editRecipeComment(updatedComment, commentId) {
-    try {
-      const res = await fetch(`/api/recipe/comments/${commentId}`, {
-        method: 'PUT',
-        headers: new Headers({
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify(updatedComment),
-      });
-      const data = await res.json();
-
-      dispatch({ type: SET_RECIPE, payload: data });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   return (
     <RecipeContext.Provider
       value={{
@@ -135,7 +117,6 @@ export function RecipeState({ children }) {
         updateRecipe,
         createRecipe,
         addRecipeComment,
-        editRecipeComment,
       }}
     >
       {children}
