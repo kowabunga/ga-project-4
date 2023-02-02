@@ -7,7 +7,7 @@ export default function PostCard({ post }) {
       <div>
         <h4>{post.title}</h4>
         <div className='ellipses'>{post.content}</div>
-        <small className='ms-1 text-muted'>By {post.user.name}</small>
+        <small className='text-muted'>By {post.user.name}</small>
       </div>
     </Link>
   );

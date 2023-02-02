@@ -7,7 +7,7 @@ export default function RecipeCard({ recipe }) {
       <div>
         <h4>{recipe.title}</h4>
         <div className='ellipses'>{recipe.description}</div>
-        <small className='ms-1 text-muted'>By {recipe.user.name}</small>
+        <small className='text-muted'>By {recipe.user.name}</small>
       </div>
     </Link>
   );

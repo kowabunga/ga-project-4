@@ -2,7 +2,7 @@ import { useReducer, createContext, useContext } from 'react';
 
 import PostReducer from './postReducer';
 
-import { SET_POSTS } from '../types';
+import { SET_POSTS, SET_POST } from '../types';
 
 export const PostContext = createContext();
 
@@ -39,7 +39,7 @@ export function PostState({ children }) {
   }
 
   return (
-    <PostContext.Provider value={{ ...state, getAllPosts }}>
+    <PostContext.Provider value={{ ...state, getAllPosts, getSinglePost }}>
       {children}
     </PostContext.Provider>
   );
