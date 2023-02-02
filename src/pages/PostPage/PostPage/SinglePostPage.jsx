@@ -19,6 +19,15 @@ export default function SinglePostPage() {
     <section>
       {post && (
         <>
+          <div className='row justify-content-center'>
+            <div className='col-9 col-lg-4'>
+              <img
+                src={post.imgUrl}
+                alt={post.title}
+                className='img-fluid mb-5'
+              />
+            </div>
+          </div>
           <div className='text-center'>
             <h1 className='text-capitalize'>{post.title}</h1>
             <h5 className>By {post?.user.name}</h5>
