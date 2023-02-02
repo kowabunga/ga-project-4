@@ -60,6 +60,8 @@ async function editPostComment(req, res) {
       await Post.find({ 'comments._id': req.params.id }).populate('user')
     )[0];
 
+    console.log(post);
+
     if (!post) return res.status(400).json({ error: `Can't find comment` });
 
     if (!post.user.equals(req.user._id))
@@ -108,7 +110,9 @@ async function deleteRecipeComment(req, res) {
 
 async function deletePostComment(req, res) {
   try {
-    const post = (await Post.find({ 'comments._id': req.params.id }))[0];
+    const post = (
+      await Post.find({ 'comments._id': req.params.id }).populate('user')
+    )[0];
 
     if (!post) return res.status(400).json({ error: `Can't find comment` });
 
