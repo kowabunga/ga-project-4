@@ -1,8 +1,9 @@
 import { usePostContext } from '../../context/posts/postState';
+import { useState } from 'react';
+import EditCommentModal from '../EditCommentModal/EditCommentModal';
 export default function Comment({ comment, user }) {
   const { editPostComment, deletePostComment } = usePostContext();
 
-  function handleCommentEdit() {}
   function handleCommentDelete() {
     deletePostComment(comment._id);
   }
@@ -16,7 +17,11 @@ export default function Comment({ comment, user }) {
         </span>
         {user && (
           <span className='btn-group'>
-            <button className='btn btn-outline-warning px-3'>
+            <button
+              className='btn btn-outline-warning px-3'
+              data-bs-toggle='modal'
+              data-bs-target={`#editCommentModal${comment._id}`}
+            >
               <i className='fa-solid fa-pen-to-square'></i>
             </button>
             <button
@@ -29,6 +34,7 @@ export default function Comment({ comment, user }) {
         )}
       </p>
       <p>{comment.content}</p>
+      <EditCommentModal oldComment={comment} />
     </li>
   );
 }

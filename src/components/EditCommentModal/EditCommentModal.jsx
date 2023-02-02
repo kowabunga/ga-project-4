@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
 import { usePostContext } from '../../context/posts/postState';
 
-export default function AddCommentModal({ user, post, titleI, commentI }) {
-  const { addPostComment } = usePostContext();
+export default function EditCommentModal({ user, post, oldComment }) {
+  const { editPostComment } = usePostContext();
 
-  const [title, setTitle] = useState(titleI ? titleI : '');
-  const [comment, setComment] = useState(commentI ? commentI : '');
+  const [title, setTitle] = useState('');
+  const [comment, setComment] = useState('');
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    addPostComment({ title, content: comment, user, post }, post);
+    editPostComment({ title, content: comment }, oldComment._id);
   }
 
   useEffect(() => {
+    setTitle(oldComment.title);
+    setComment(oldComment.content);
     return () => {
       setTitle('');
       setComment('');
@@ -22,15 +24,18 @@ export default function AddCommentModal({ user, post, titleI, commentI }) {
   return (
     <div
       className='modal fade'
-      id='addCommentModel'
-      aria-labelledby='addCommentModel'
+      id={`editCommentModal${oldComment._id}`}
+      aria-labelledby={`editCommentModal${oldComment._id}`}
       aria-hidden='true'
     >
       <div className='modal-dialog modal-dialog-centered'>
         <div className='modal-content'>
           <div className='modal-header'>
-            <h1 className='modal-title fs-5' id='addCommentModel'>
-              Add Comment/Review
+            <h1
+              className='modal-title fs-5'
+              id={`editCommentModal${oldComment._id}`}
+            >
+              Edit Comment/Review
             </h1>
             <button
               type='button'

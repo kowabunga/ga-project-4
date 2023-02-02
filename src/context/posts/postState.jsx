@@ -60,7 +60,24 @@ export function PostState({ children }) {
     }
   }
 
-  async function editPostComment() {}
+  async function editPostComment(updatedComment, commentId) {
+    try {
+      console.log(updatedComment);
+      const res = await fetch(`/api/post/comments/${commentId}`, {
+        method: 'PUT',
+        headers: new Headers({
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify(updatedComment),
+      });
+      const data = await res.json();
+      console.log(data);
+      dispatch({ type: SET_POST, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async function deletePostComment(commentId) {
     console.log(commentId);
