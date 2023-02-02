@@ -34,6 +34,8 @@ async function editRecipeComment(req, res) {
   try {
     const recipe = (await Recipe.find({ 'comments._id': req.params.id }))[0];
 
+    console.log(recipe);
+
     if (!recipe) return res.status(400).json({ error: `Can't find comment` });
 
     if (!recipe.user.equals(req.user._id))
