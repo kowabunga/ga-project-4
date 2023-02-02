@@ -112,16 +112,18 @@ async function deletePostComment(req, res) {
 
     if (!post) return res.status(400).json({ error: `Can't find comment` });
 
-    if (!post.user.equals(req.user._id))
-      return res.status(400).json({ error: 'User mismatch' });
-
     const commentIdx = post.comments.findIndex(comment =>
       comment._id.equals(req.params.id)
     );
 
+    if (!post.comments[commentIdx].user.equals(req.user._id))
+      return res.status(400).json({ error: 'User mismatch' });
+
     post.comments.splice(commentIdx, 1);
 
     await post.save();
+
+    console.log(post);
 
     res.status(200).json(post);
   } catch (error) {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { usePostContext } from '../../context/posts/postState';
 
-export default function AddCommentModal({ user, post }) {
+export default function AddCommentModal({ user, post, isPost = false }) {
   const { addPostComment } = usePostContext();
 
   const [title, setTitle] = useState('');
@@ -9,7 +9,7 @@ export default function AddCommentModal({ user, post }) {
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    addPostComment({ title, content: comment, user, post }, post);
+    isPost ? addPostComment({ title, content: comment, user, post }, post) : '';
   }
 
   useEffect(() => {

@@ -21,7 +21,7 @@ export default function SinglePostPage() {
         <>
           <div className='text-center'>
             <h1 className='text-capitalize'>{post.title}</h1>
-            <h5 className>By {post.user.name}</h5>
+            <h5 className>By {post?.user.name}</h5>
             <div style={{ width: '66%', margin: '0 auto' }} className='pb-3'>
               <hr />
             </div>
@@ -53,7 +53,7 @@ export default function SinglePostPage() {
             ) : (
               'No comments or reviews...'
             )}
-            <AddCommentModal user={user?._id} post={post._id} />
+            <AddCommentModal user={user?._id} post={post._id} isPost={true} />
           </div>
         </>
       )}
