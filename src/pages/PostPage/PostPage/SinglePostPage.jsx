@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { usePostContext } from '../../../context/posts/postState';
+import { useUserContext } from '../../../context/users/userState';
 
 import Comment from '../../../components/Comment/Comment';
 import AddCommentModal from '../../../components/AddCommentModal/AddCommentModal';
 
 export default function SinglePostPage() {
   const { getSinglePost, post } = usePostContext();
+  const { token, user } = useUserContext();
   const { id } = useParams();
 
   useEffect(() => {
@@ -28,24 +30,30 @@ export default function SinglePostPage() {
           <div className='mt-5'>
             <div className='d-flex justify-content-between mb-4'>
               <h3>Reviews and Comments</h3>
-              <button
-                className='btn btn-outline-primary'
-                data-bs-toggle='modal'
-                data-bs-target='#addCommentModel'
-              >
-                Add comment
-              </button>
+              {token && (
+                <button
+                  className='btn btn-outline-primary'
+                  data-bs-toggle='modal'
+                  data-bs-target='#addCommentModel'
+                >
+                  Add comment
+                </button>
+              )}
             </div>
             {post.comments.length > 0 ? (
-              <ul className='list-group-flush'>
+              <ul className='list-group list-group-flush'>
                 {post.comments.map(comment => (
-                  <Comment comment={comment} key={comment._id} />
+                  <Comment
+                    comment={comment}
+                    user={user?._id}
+                    key={comment._id}
+                  />
                 ))}{' '}
               </ul>
             ) : (
               'No comments or reviews...'
             )}
-            <AddCommentModal />
+            <AddCommentModal user={user?._id} post={post._id} />
           </div>
         </>
       )}

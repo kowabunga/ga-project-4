@@ -8,7 +8,7 @@ import AddCommentModal from '../../../components/AddCommentModal/AddCommentModal
 
 export default function SingleRecipePage() {
   const { getRecipe, recipe } = useRecipeContext();
-  const { user } = useUserContext();
+  const { token } = useUserContext();
   const { id } = useParams();
 
   useEffect(() => {
@@ -50,16 +50,18 @@ export default function SingleRecipePage() {
         <div className='mt-5'>
           <div className='d-flex justify-content-between mb-4'>
             <h3>Reviews and Comments</h3>
-            <button
-              className='btn btn-outline-primary'
-              data-bs-toggle='modal'
-              data-bs-target='#addCommentModel'
-            >
-              Add comment
-            </button>
+            {token && (
+              <button
+                className='btn btn-outline-primary'
+                data-bs-toggle='modal'
+                data-bs-target='#addCommentModel'
+              >
+                Add comment
+              </button>
+            )}
           </div>
           {recipe.comments.length > 0 ? (
-            <ul className='list-group-flush'>
+            <ul className='list-group list-group-flush'>
               {recipe.comments.map(comment => (
                 <Comment comment={comment} key={comment._id} />
               ))}{' '}
