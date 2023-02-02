@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
 import { usePostContext } from '../../context/posts/postState';
+import { useRecipeContext } from '../../context/recipes/recipeState';
 
-export default function AddCommentModal({ user, post, isPost = false }) {
+export default function AddCommentModal({ user, post, recipe, isPost }) {
   const { addPostComment } = usePostContext();
+  const { addRecipeComment } = useRecipeContext();
 
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    isPost ? addPostComment({ title, content: comment, user, post }, post) : '';
+    isPost
+      ? addPostComment({ title, content: comment, user, post }, post)
+      : addRecipeComment({ title, content: comment, user, recipe }, recipe);
   }
 
   useEffect(() => {

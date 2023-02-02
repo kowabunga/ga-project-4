@@ -25,7 +25,7 @@ export function RecipeState({ children }) {
     } catch (error) {
       console.log(error);
     }
-  } 
+  }
 
   async function getRecipe(id) {
     try {
@@ -86,9 +86,38 @@ export function RecipeState({ children }) {
     }
   }
 
+  async function addRecipeComment(comment, recipeId) {
+    try {
+      console.log(comment, recipeId);
+
+      const res = await fetch(`/api/recipe/${recipeId}/comments`, {
+        method: 'POST',
+        headers: new Headers({
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify(comment),
+      });
+
+      const data = await res.json();
+      console.log(data);
+
+      dispatch({ type: SET_RECIPE, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <RecipeContext.Provider
-      value={{ ...state, getAllRecipes, getRecipe, updateRecipe, createRecipe }}
+      value={{
+        ...state,
+        getAllRecipes,
+        getRecipe,
+        updateRecipe,
+        createRecipe,
+        addRecipeComment,
+      }}
     >
       {children}
     </RecipeContext.Provider>

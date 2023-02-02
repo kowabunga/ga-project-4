@@ -42,7 +42,6 @@ export function PostState({ children }) {
   }
 
   async function addPostComment(comment, postId) {
-    console.log(JSON.stringify(comment));
     try {
       const res = await fetch(`/api/post/${postId}/comments`, {
         method: 'POST',

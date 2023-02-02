@@ -8,7 +8,7 @@ import AddCommentModal from '../../../components/AddCommentModal/AddCommentModal
 
 export default function SingleRecipePage() {
   const { getRecipe, recipe } = useRecipeContext();
-  const { token } = useUserContext();
+  const { token, user } = useUserContext();
   const { id } = useParams();
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export default function SingleRecipePage() {
           )}
         </div>
         {/* MODAL FOR ADD COMMENT */}
-        <AddCommentModal />
+        <AddCommentModal user={user._id} recipe={recipe._id} isPost={false} />
       </section>
     )
   );
