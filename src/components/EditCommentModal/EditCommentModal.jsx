@@ -9,7 +9,10 @@ export default function EditCommentModal({ user, post, oldComment }) {
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    editPostComment({ title, content: comment }, oldComment._id);
+    editPostComment(
+      { title, content: comment, user: oldComment.user },
+      oldComment._id
+    );
   }
 
   useEffect(() => {

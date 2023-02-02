@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { usePostContext } from '../../context/posts/postState';
 
-export default function AddCommentModal({ user, post, titleI, commentI }) {
+export default function AddCommentModal({ user, post }) {
   const { addPostComment } = usePostContext();
 
-  const [title, setTitle] = useState(titleI ? titleI : '');
-  const [comment, setComment] = useState(commentI ? commentI : '');
+  const [title, setTitle] = useState('');
+  const [comment, setComment] = useState('');
 
   function handleFormSubmit(e) {
     e.preventDefault();

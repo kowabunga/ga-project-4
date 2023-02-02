@@ -69,11 +69,8 @@ async function editPostComment(req, res) {
       comment._id.equals(req.params.id)
     );
 
-    console.log(post.comments);
-
     post.comments.splice(commentIdx, 1, req.body);
 
-    console.log(post.comments);
     await post.save();
 
     res.status(200).json(post);
