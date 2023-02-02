@@ -1,6 +1,7 @@
 import { usePostContext } from '../../context/posts/postState';
 import EditCommentModal from '../EditCommentModal/EditCommentModal';
 export default function Comment({ comment, user }) {
+  console.log('COMMENT -> ', comment);
   const { deletePostComment } = usePostContext();
 
   function handleCommentDelete() {
@@ -14,6 +15,7 @@ export default function Comment({ comment, user }) {
           {comment.title} -{' '}
           <em>{new Date(comment.createdAt).toLocaleDateString()}</em>
         </span>
+        <span>{`${user} ${comment.user}`}</span>
         {user !== undefined && user === comment.user && (
           <span className='btn-group'>
             <button

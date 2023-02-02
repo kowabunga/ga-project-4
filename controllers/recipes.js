@@ -15,9 +15,7 @@ async function allRecipes(req, res) {
 
 async function getRecipeById(req, res) {
   try {
-    const recipe = await Recipe.findById(req.params.id)
-      .populate('comments.user')
-      .populate('user');
+    const recipe = await Recipe.findById(req.params.id).populate('user');
     if (!recipe) return res.status(400).json({ error: 'No recipe found' });
 
     res.status(200).json(recipe);
