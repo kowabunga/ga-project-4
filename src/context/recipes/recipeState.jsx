@@ -101,6 +101,24 @@ export function RecipeState({ children }) {
     }
   }
 
+  async function deleteRecipe(id) {
+    console.log(id);
+    try {
+      const res = await fetch(`/api/recipes/${id}`, {
+        method: 'DELETE',
+        headers: new Headers({
+          Authorization: `Bearer ${token}`,
+        }),
+      });
+
+      const data = await res.json();
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function addRecipeComment(comment, recipeId) {
     try {
       console.log(comment, recipeId);
@@ -166,6 +184,7 @@ export function RecipeState({ children }) {
         getUserRecipes,
         updateRecipe,
         createRecipe,
+        deleteRecipe,
         addRecipeComment,
         editRecipeComment,
         deleteRecipeComment,

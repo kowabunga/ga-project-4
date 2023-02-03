@@ -77,6 +77,23 @@ export function PostState({ children }) {
     }
   }
 
+  async function deletePost(id) {
+    try {
+      const res = await fetch(`/api/posts/${id}`, {
+        method: 'DELETE',
+        headers: new Headers({
+          Authorization: `Bearer ${token}`,
+        }),
+      });
+
+      const data = await res.json();
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function addPostComment(comment, postId) {
     try {
       const res = await fetch(`/api/post/${postId}/comments`, {
@@ -137,6 +154,7 @@ export function PostState({ children }) {
         getSinglePost,
         getUserPosts,
         createPost,
+        deletePost,
         addPostComment,
         editPostComment,
         deletePostComment,
