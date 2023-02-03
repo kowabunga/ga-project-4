@@ -8,7 +8,6 @@ import { GET_USER, GET_TOKEN, LOGOUT_USER } from '../types';
 // So i'll just import and use them where necessary to set state in context
 import userService from '../../utils/userService';
 import tokenService from '../../utils/tokenService';
-import { get } from 'mongoose';
 
 export const UserContext = createContext();
 

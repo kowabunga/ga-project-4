@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useUserContext } from '../../context/users/userState';
 
 export default function LoginPage() {
@@ -53,6 +53,9 @@ export default function LoginPage() {
           <button type='submit' className='btn btn-primary'>
             Login
           </button>
+          <small className='d-block mt-2'>
+            Don't have an account? <Link to='/signup'>Create Account</Link>
+          </small>
         </form>
       </section>
     )

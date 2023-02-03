@@ -1,5 +1,9 @@
 import React from 'react';
 
-export default function ErrorMessage(props){
-    return <span className={"error"}>{props.error}</span>
+export default function ErrorMessage({ error }) {
+  return (
+    <div className='alert alert-danger text-center' role='alert'>
+      {error}
+    </div>
+  );
 }

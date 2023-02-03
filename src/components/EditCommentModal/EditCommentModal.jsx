@@ -10,7 +10,6 @@ export default function EditCommentModal({ user, post, oldComment, isPost }) {
   const [comment, setComment] = useState('');
 
   function handleFormSubmit(e) {
-    console.log('Old comment -> ', oldComment);
     e.preventDefault();
     isPost
       ? editPostComment(

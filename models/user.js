@@ -16,16 +16,6 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       unique: true,
     },
-    cookLevel: {
-      type: String,
-      required: true,
-      enum: [
-        'beginner cook',
-        'intermediate cook',
-        'experied cook',
-        'master cook',
-      ],
-    },
     password: String,
   },
   {
