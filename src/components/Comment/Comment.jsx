@@ -36,7 +36,7 @@ export default function Comment({ comment, user, isPost }) {
         )}
       </p>
       <p>{comment.content}</p>
-      <EditCommentModal oldComment={comment} />
+      <EditCommentModal oldComment={comment} isPost={isPost} />
     </li>
   );
 }

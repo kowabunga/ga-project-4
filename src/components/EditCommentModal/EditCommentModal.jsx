@@ -1,18 +1,26 @@
 import { useState, useEffect } from 'react';
 import { usePostContext } from '../../context/posts/postState';
+import { useRecipeContext } from '../../context/recipes/recipeState.jsx';
 
-export default function EditCommentModal({ user, post, oldComment }) {
+export default function EditCommentModal({ user, post, oldComment, isPost }) {
   const { editPostComment } = usePostContext();
+  const { editRecipeComment } = useRecipeContext();
 
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
 
   function handleFormSubmit(e) {
+    console.log('Old comment -> ', oldComment);
     e.preventDefault();
-    editPostComment(
-      { title, content: comment, user: oldComment.user },
-      oldComment._id
-    );
+    isPost
+      ? editPostComment(
+          { title, content: comment, user: oldComment.user },
+          oldComment._id
+        )
+      : editRecipeComment(
+          { title, content: comment, user: oldComment.user },
+          oldComment._id
+        );
   }
 
   useEffect(() => {
