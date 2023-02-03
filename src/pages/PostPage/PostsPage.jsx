@@ -10,7 +10,10 @@ export default function PostsPage() {
   }, []);
 
   return (
-    <section className='d-flex flex-wrap justify-content-evenly align-items-center'>
+    <section
+      className='d-flex flex-wrap justify-content-evenly align-items-center'
+      style={{ height: '30rem' }}
+    >
       {posts && posts.map(post => <PostCard post={post} key={post._id} />)}
     </section>
   );

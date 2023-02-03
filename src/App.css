@@ -7,7 +7,7 @@
 }
 
 .custom-card {
-    height: 20rem;
+    max-height: 30rem;
     width: 18rem;
     text-decoration: none;
     color: #000;
