@@ -15,6 +15,7 @@ import './config/database.js';
 // Require controllers here
 const app = express();
 
+app.set('view engine', 'ejs');
 // console.log(assetsRouter)
 // add in when the app is ready to be deployed
 // app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
@@ -38,8 +39,13 @@ app.use('/api/recipes', recipeRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api', commentRoutes);
 // "catch all" route
+
+app.use(express.static(path.join(__dirname, 'dist')));
+
+import manifest from './dist/manifest.json' assert { type: 'json' };
+
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.render(path.join(__dirname, 'dist', 'index.ejs'), { manifest });
 });
 
 const { PORT = 8000 } = process.env;
