@@ -50,11 +50,18 @@ export default function Layout() {
                   </NavLink>
                 </li>
               ) : (
-                <li className='nav-item'>
-                  <button className='btn nav-link' onClick={handleClick}>
-                    Logout
-                  </button>
-                </li>
+                <>
+                  <li className='nav-item'>
+                    <NavLink className='nav-link' to='/user'>
+                      User
+                    </NavLink>
+                  </li>
+                  <li className='nav-item'>
+                    <button className='btn nav-link' onClick={handleClick}>
+                      Logout
+                    </button>
+                  </li>
+                </>
               )}
             </ul>
           </div>

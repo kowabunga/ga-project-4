@@ -1,0 +1,9 @@
+.post-link {
+    text-decoration: none;
+    color: #000;
+}
+
+.post-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

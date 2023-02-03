@@ -1,19 +1,17 @@
 import { useUserContext } from '../../../context/users/userState';
-import { useRecipeContext } from '../../../context/recipes/recipeState';
+import { usePostContext } from '../../../context/posts/postState';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function NewRecipePage() {
+export default function NewPostPage() {
   const { user } = useUserContext();
-  const { createRecipe } = useRecipeContext();
+  const { createPost, post } = usePostContext();
   const [state, setState] = useState({
-    ingredients: '',
     title: '',
     content: '',
-    description: '',
-    imageUrl: '',
-    user: user._id,
+    imgUrl: '',
+    user: '',
   });
 
   const navigate = useNavigate();
@@ -27,13 +25,17 @@ export default function NewRecipePage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const recipeId = await createRecipe(state);
-    navigate(`/recipes/${recipeId}`);
+    const postId = await createPost(state);
+    navigate(`/posts/${postId}`);
   }
-  
+
+  useEffect(() => {
+    user && setState({ ...state, user: user._id });
+  }, [user]);
+
   return (
     <section>
-      <h1 className='mb-3'>Create Recipe</h1>
+      <h1 className='mb-3'>Create Post</h1>
       <form onSubmit={handleSubmit}>
         <div className='mb-3'>
           <label htmlFor='title' className='form-label'>
@@ -44,39 +46,13 @@ export default function NewRecipePage() {
             className='form-control'
             value={state.title}
             name='title'
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='mb-3'>
-          <label htmlFor='description' className='form-label'>
-            Description
-          </label>
-          <input
-            type='text'
-            className='form-control'
-            name='description'
-            value={state.description}
             required
             onChange={handleChange}
           />
         </div>
         <div className='mb-3'>
-          <label htmlFor='ingredients' className='form-label'>
-            Ingredients
-          </label>
-          <input
-            type='text'
-            className='form-control'
-            name='ingredients'
-            value={state.ingredients}
-            required
-            onChange={handleChange}
-          />
-        </div>
-        <div className='mb-3'>
-          <label htmlFor='instructions' className='form-label'>
-            Instructions
+          <label htmlFor='content' className='form-label'>
+            Content
           </label>
           <input
             type='text'
@@ -88,14 +64,14 @@ export default function NewRecipePage() {
           />
         </div>
         <div className='mb-3'>
-          <label htmlFor='imageUrl' className='form-label'>
+          <label htmlFor='content' className='form-label'>
             Image
           </label>
           <input
             type='text'
             className='form-control'
-            name='imageUrl'
-            value={state.imageUrl}
+            name='imgUrl'
+            value={state.imgUrl}
             required
             onChange={handleChange}
           />

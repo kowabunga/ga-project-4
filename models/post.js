@@ -16,11 +16,9 @@ const blogSchema = new Schema({
     ref: 'User',
     required: true,
   },
-  rating: {
-    type: Number,
-    min: 0,
-    max: 5,
-    default: 0,
+  imgUrl: {
+    type: String,
+    required: true,
   },
 });
 

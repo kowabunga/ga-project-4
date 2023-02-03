@@ -2,7 +2,6 @@ import { usePostContext } from '../../context/posts/postState';
 import { useRecipeContext } from '../../context/recipes/recipeState';
 import EditCommentModal from '../EditCommentModal/EditCommentModal';
 export default function Comment({ comment, user, isPost }) {
-  console.log(`${isPost} COMMENT -> `, comment);
   const { deletePostComment } = usePostContext();
   const { deleteRecipeComment } = useRecipeContext();
 

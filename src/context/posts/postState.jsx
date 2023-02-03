@@ -30,12 +30,48 @@ export function PostState({ children }) {
     }
   }
 
+  async function getUserPosts() {
+    try {
+      const res = await fetch('/api/posts', {
+        method: 'GET',
+        headers: new Headers({
+          Authorization: `Bearer ${token}`,
+        }),
+      });
+      const data = await res.json();
+
+      dispatch({ type: SET_POSTS, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function getSinglePost(id) {
     try {
       const res = await fetch(`/api/posts/${id}`);
       const data = await res.json();
 
       dispatch({ type: SET_POST, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function createPost(post) {
+    console.log(post);
+    try {
+      const res = await fetch('/api/posts', {
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        }),
+        body: JSON.stringify(post),
+      });
+      const data = await res.json();
+
+      dispatch({ type: SET_POST, payload: data });
+      return data._id;
     } catch (error) {
       console.log(error);
     }
@@ -99,6 +135,8 @@ export function PostState({ children }) {
         ...state,
         getAllPosts,
         getSinglePost,
+        getUserPosts,
+        createPost,
         addPostComment,
         editPostComment,
         deletePostComment,

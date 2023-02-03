@@ -27,6 +27,22 @@ export function RecipeState({ children }) {
     }
   }
 
+  async function getUserRecipes() {
+    try {
+      const res = await fetch('/api/recipes', {
+        method: 'GET',
+        headers: new Headers({
+          Authorization: `Bearer ${token}`,
+        }),
+      });
+      const data = await res.json();
+
+      dispatch({ type: SET_RECIPES, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function getRecipe(id) {
     try {
       const res = await fetch(`/api/recipes/${id}`);
@@ -69,7 +85,6 @@ export function RecipeState({ children }) {
         body: JSON.stringify(updateRecipe),
       });
       const data = await res.json();
-      console.log(data);
 
       if (state?.recipes.length > 0) {
         const oldRecipeId = state.recipes.findIndex(recipe =>
@@ -148,6 +163,7 @@ export function RecipeState({ children }) {
         ...state,
         getAllRecipes,
         getRecipe,
+        getUserRecipes,
         updateRecipe,
         createRecipe,
         addRecipeComment,
