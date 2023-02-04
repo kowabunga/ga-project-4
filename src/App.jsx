@@ -11,6 +11,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import RecipesPage from './pages/RecipesPage/RecipesPage';
 import SingleRecipePage from './pages/RecipesPage/SingleRecipe/SingleRecipePage';
 import NewRecipePage from './pages/RecipesPage/NewRecipePage/NewRecipePage';
+import EditRecipePage from './pages/RecipesPage/EditRecipePage/EditRecipePage';
 import PostsPage from './pages/PostPage/PostsPage';
 import SinglePostPage from './pages/PostPage/PostPage/SinglePostPage';
 import SignUpPage from './pages/SignupPage/SignupPage';
@@ -33,6 +34,7 @@ function App() {
         <Route path='signup' element={<SignUpPage />} />
         <Route path='recipes' element={<RecipesPage />} />
         <Route path='recipes/create' element={<NewRecipePage />} />
+        <Route path='recipes/:id/edit' element={<EditRecipePage />} />
         <Route path='recipes/:id' element={<SingleRecipePage />} />
         <Route path='posts' element={<PostsPage />} />
         <Route path='posts/create' element={<NewPostPage />} />

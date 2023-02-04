@@ -3,7 +3,7 @@ import RecipeReducer from './recipeReducer';
 
 import { useUserContext } from '../users/userState';
 
-import { SET_RECIPE, SET_RECIPES } from '../types';
+import { SET_RECIPE, SET_RECIPES, UPDATE_RECIPE } from '../types';
 
 export const RecipeContext = createContext();
 
@@ -74,7 +74,7 @@ export function RecipeState({ children }) {
     }
   }
 
-  async function updateRecipe(updatedRecipe) {
+  async function updateRecipe(updatedRecipe, id) {
     try {
       const res = await fetch(`/api/recipes/${id}`, {
         method: 'PUT',
@@ -82,20 +82,12 @@ export function RecipeState({ children }) {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         }),
-        body: JSON.stringify(updateRecipe),
+        body: JSON.stringify(updatedRecipe),
       });
       const data = await res.json();
 
-      if (state?.recipes.length > 0) {
-        const oldRecipeId = state.recipes.findIndex(recipe =>
-          recipe._id.equals(data._id)
-        );
-
-        const updatedRecipes = state.recipes.splice(oldRecipeId, 1, data);
-        dispatch({ type: SET_RECIPES, payload: updatedRecipes });
-      }
-
       dispatch({ type: UPDATE_RECIPE, payload: data });
+      return data._id;
     } catch (error) {
       console.log(error);
     }
