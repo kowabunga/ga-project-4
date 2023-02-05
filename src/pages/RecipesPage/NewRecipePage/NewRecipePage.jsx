@@ -12,7 +12,7 @@ export default function NewRecipePage() {
     title: '',
     content: '',
     description: '',
-    imageUrl: '',
+    imgUrl: '',
     user: '',
   });
 
@@ -94,14 +94,14 @@ export default function NewRecipePage() {
             />
           </div>
           <div className='mb-3'>
-            <label htmlFor='imageUrl' className='form-label'>
+            <label htmlFor='imgUrl' className='form-label'>
               Image
             </label>
             <input
               type='text'
               className='form-control'
-              name='imageUrl'
-              value={state.imageUrl}
+              name='imgUrl'
+              value={state.imgUrl}
               required
               onChange={handleChange}
             />

@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './UserLandingPage.css';
 
-import { useUserContext } from '../../../context/users/userState';
-import { useRecipeContext } from '../../../context/recipes/recipeState';
-import { usePostContext } from '../../../context/posts/postState';
+import { useUserContext } from '../../context/users/userState';
+import { useRecipeContext } from '../../context/recipes/recipeState';
+import { usePostContext } from '../../context/posts/postState';
 
 export default function UserLandingPage() {
   const { user } = useUserContext();

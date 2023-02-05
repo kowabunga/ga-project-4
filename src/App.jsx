@@ -16,7 +16,7 @@ import PostsPage from './pages/PostPage/PostsPage';
 import SinglePostPage from './pages/PostPage/PostPage/SinglePostPage';
 import EditPostPage from './pages/PostPage/EditPostPage/EditPostsPage';
 import SignUpPage from './pages/SignupPage/SignupPage';
-import UserLandingPage from './pages/UserPages/UserLanding/UserLandingPage';
+import UserLandingPage from './pages/UserPages/UserLandingPage';
 import NewPostPage from './pages/PostPage/NewPostPage/NewPostPage';
 
 function App() {
