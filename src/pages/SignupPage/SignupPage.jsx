@@ -5,7 +5,7 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 export default function SignUpPage() {
   const navigate = useNavigate();
-  const { token, signUp } = useUserContext();
+  const { token, signUp, signUpError } = useUserContext();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ export default function SignUpPage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (token) navigate(-1);
+    if (token && !signUpError) navigate(-1);
     return () => {
       setError(null);
     };
@@ -31,7 +31,9 @@ export default function SignUpPage() {
 
   return (
     <section className='p-4'>
-      {error && <ErrorMessage error={error} />}
+      {signUpError && (
+        <p className='text-center text-danger lead'>{signUpError}</p>
+      )}
       <h3 className='text-center'>Create Account</h3>
       <form
         style={{ width: '470px' }}

@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useUserContext } from '../../context/users/userState';
 
 export default function LoginPage() {
-  const { logIn, token } = useUserContext();
+  const { logIn, token, loginError } = useUserContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -12,7 +12,10 @@ export default function LoginPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     await logIn({ email, password });
-    navigate(-1);
+
+    if (loginError !== null) {
+      navigate(-1);
+    }
   }
 
   useEffect(() => {
@@ -22,6 +25,9 @@ export default function LoginPage() {
   return (
     !token && (
       <section className='p-4'>
+        {loginError && (
+          <p className='text-center lead text-danger'>{loginError}</p>
+        )}
         <h3 className='text-center'>Login</h3>
         <form
           style={{ width: '470px' }}
