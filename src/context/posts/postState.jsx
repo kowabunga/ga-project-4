@@ -3,7 +3,7 @@ import { useUserContext } from '../users/userState';
 
 import PostReducer from './postReducer';
 
-import { SET_POSTS, SET_POST } from '../types';
+import { SET_POSTS, SET_POST, UPDATE_POST } from '../types';
 
 export const PostContext = createContext();
 
@@ -52,6 +52,25 @@ export function PostState({ children }) {
       const data = await res.json();
 
       dispatch({ type: SET_POST, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function updatePost(updatedPost, id) {
+    try {
+      const res = await fetch(`/api/posts/${id}`, {
+        method: 'PUT',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        }),
+        body: JSON.stringify(updatedPost),
+      });
+      const data = await res.json();
+      dispatch({ type: UPDATE_POST, payload: data });
+
+      return data._id;
     } catch (error) {
       console.log(error);
     }
@@ -155,6 +174,7 @@ export function PostState({ children }) {
         getUserPosts,
         createPost,
         deletePost,
+        updatePost,
         addPostComment,
         editPostComment,
         deletePostComment,

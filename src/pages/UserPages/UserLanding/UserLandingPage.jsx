@@ -95,9 +95,12 @@ export default function UserLandingPage() {
                     {post.title}
                   </Link>
                   <div className='btn-group'>
-                    <button className='btn btn-outline-warning px-3'>
+                    <Link
+                      to={`/posts/${post._id}/edit`}
+                      className='btn btn-outline-warning px-3'
+                    >
                       <i className='fa-solid fa-pen-to-square'></i>
-                    </button>
+                    </Link>
                     <button
                       className='btn btn-outline-danger px-3'
                       onClick={e => {

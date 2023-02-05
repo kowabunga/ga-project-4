@@ -14,6 +14,7 @@ import NewRecipePage from './pages/RecipesPage/NewRecipePage/NewRecipePage';
 import EditRecipePage from './pages/RecipesPage/EditRecipePage/EditRecipePage';
 import PostsPage from './pages/PostPage/PostsPage';
 import SinglePostPage from './pages/PostPage/PostPage/SinglePostPage';
+import EditPostPage from './pages/PostPage/EditPostPage/EditPostsPage';
 import SignUpPage from './pages/SignupPage/SignupPage';
 import UserLandingPage from './pages/UserPages/UserLanding/UserLandingPage';
 import NewPostPage from './pages/PostPage/NewPostPage/NewPostPage';
@@ -38,6 +39,7 @@ function App() {
         <Route path='recipes/:id' element={<SingleRecipePage />} />
         <Route path='posts' element={<PostsPage />} />
         <Route path='posts/create' element={<NewPostPage />} />
+        <Route path='posts/:id/edit' element={<EditPostPage />} />
         <Route path='posts/:id' element={<SinglePostPage />} />
         <Route path='user' element={<UserLandingPage />} />
       </Route>

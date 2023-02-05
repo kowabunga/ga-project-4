@@ -4,6 +4,7 @@ export default (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case UPDATE_POST:
     case SET_POST:
       return {
         ...state,

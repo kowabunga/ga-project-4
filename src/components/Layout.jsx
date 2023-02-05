@@ -1,11 +1,14 @@
-import { Outlet, Link, NavLink } from 'react-router-dom';
+import { Outlet, Link, NavLink, useNavigate } from 'react-router-dom';
 import { useUserContext } from '../context/users/userState';
 
 export default function Layout() {
   const { token, signOut } = useUserContext();
 
+  const navigate = useNavigate();
+
   function handleClick() {
     signOut();
+    navigate('/');
   }
 
   return (
