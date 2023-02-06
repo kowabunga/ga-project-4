@@ -10,11 +10,15 @@ export default function PostsPage() {
   }, []);
 
   return (
-    <section
-      className='d-flex flex-wrap justify-content-evenly align-items-center'
-      style={{ height: '30rem' }}
-    >
-      {posts && posts.map(post => <PostCard post={post} key={post._id} />)}
-    </section>
+    <>
+      <h1>Blog</h1>
+      <p className='lead'>Tips and tricks by the cleverest among us.</p>
+      <section
+        className='d-flex flex-wrap justify-content-evenly align-items-center'
+        style={{ height: '30rem' }}
+      >
+        {posts && posts.map(post => <PostCard post={post} key={post._id} />)}
+      </section>
+    </>
   );
 }

@@ -10,12 +10,18 @@ export default function RecipePage() {
   }, []);
 
   return (
-    <section
-      className='d-flex flex-wrap justify-content-evenly align-items-center'
-      style={{ height: '30rem' }}
-    >
-      {recipes &&
-        recipes.map(recipe => <RecipeCard recipe={recipe} key={recipe._id} />)}
-    </section>
+    <>
+      <h1>Recipes</h1>
+      <p className='lead'>Favored recipes, shared by friends.</p>
+      <section
+        className='d-flex flex-wrap justify-content-evenly align-items-center'
+        style={{ height: '30rem' }}
+      >
+        {recipes &&
+          recipes.map(recipe => (
+            <RecipeCard recipe={recipe} key={recipe._id} />
+          ))}
+      </section>
+    </>
   );
 }
