@@ -29,6 +29,7 @@ And, of course, you can view any recipe, post, and associated comments, freely w
 
 - Ability to save posts/recipes to your "saved posts" list
 - Abilty to edit user information
+- Private Route pages
 
 ## Technologies Used
 
