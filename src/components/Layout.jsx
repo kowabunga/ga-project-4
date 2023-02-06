@@ -71,14 +71,6 @@ export default function Layout() {
         </div>
       </nav>
       <main className='container py-5'>
-        {/* <div className='d-flex justify-content-end'>
-          <Link to='/recipes/create' className='btn btn-outline-primary me-1'>
-            Create Recipe
-          </Link>
-          <Link to='#' className='btn btn-outline-primary ms-1'>
-            Create Blog Post
-          </Link>
-        </div> */}
         <Outlet />
       </main>
     </>
