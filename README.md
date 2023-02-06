@@ -1,4 +1,4 @@
-# Welcome to Shopper Tropper
+# Welcome to Master Cook
 
 ## Create and Share Your Favorites
 
