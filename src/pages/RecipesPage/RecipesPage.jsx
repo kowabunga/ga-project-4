@@ -13,6 +13,7 @@ export default function RecipePage() {
     <>
       <h1>Recipes</h1>
       <p className='lead'>Favored recipes, shared by friends.</p>
+      <hr style={{ width: '90%', margin: '1rem auto' }} />
       <section
         className='d-flex flex-wrap justify-content-evenly align-items-center'
         style={{ height: '30rem' }}

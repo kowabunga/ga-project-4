@@ -13,6 +13,7 @@ export default function PostsPage() {
     <>
       <h1>Blog</h1>
       <p className='lead'>Tips and tricks by the cleverest among us.</p>
+      <hr style={{ width: '90%', margin: '1rem auto' }} />
       <section
         className='d-flex flex-wrap justify-content-evenly align-items-center'
         style={{ height: '30rem' }}
