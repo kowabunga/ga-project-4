@@ -4,6 +4,8 @@ import { usePostContext } from '../../../context/posts/postState';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import Spinner from '../../../components/Spinner/Spinner';
+
 export default function EditPostPage() {
   const { user } = useUserContext();
   const { updatePost, getSinglePost, post } = usePostContext();
@@ -12,6 +14,7 @@ export default function EditPostPage() {
     content: '',
     imgUrl: '',
     user: '',
+    loading: false,
   });
 
   const navigate = useNavigate();
@@ -26,9 +29,12 @@ export default function EditPostPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setState({ ...state, loading: true });
 
     const postId = await updatePost(state, params.id);
     navigate(`/posts/${postId}`);
+
+    setState({ ...state, loading: false });
   }
 
   useEffect(() => {
@@ -91,13 +97,17 @@ export default function EditPostPage() {
             />
           </div>
 
-          <button
-            type='submit'
-            className='btn btn-primary'
-            data-bs-dismiss='modal'
-          >
-            Update
-          </button>
+          {state.loading ? (
+            <Spinner />
+          ) : (
+            <button
+              type='submit'
+              className='btn btn-primary'
+              data-bs-dismiss='modal'
+            >
+              Update
+            </button>
+          )}
         </form>
       </section>
     )

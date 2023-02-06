@@ -4,6 +4,8 @@ import { usePostContext } from '../../../context/posts/postState';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Spinner from '../../../components/Spinner/Spinner';
+
 export default function NewPostPage() {
   const { user } = useUserContext();
   const { createPost, post } = usePostContext();
@@ -12,6 +14,7 @@ export default function NewPostPage() {
     content: '',
     imgUrl: '',
     user: '',
+    loading: false,
   });
 
   const navigate = useNavigate();
@@ -25,8 +28,10 @@ export default function NewPostPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setState({ ...state, loading: true });
     const postId = await createPost(state);
     navigate(`/posts/${postId}`);
+    setState({ ...state, loading: false });
   }
 
   useEffect(() => {
@@ -77,13 +82,17 @@ export default function NewPostPage() {
           />
         </div>
 
-        <button
-          type='submit'
-          className='btn btn-primary'
-          data-bs-dismiss='modal'
-        >
-          Submit
-        </button>
+        {state.loading ? (
+          <Spinner />
+        ) : (
+          <button
+            type='submit'
+            className='btn btn-primary'
+            data-bs-dismiss='modal'
+          >
+            Submit
+          </button>
+        )}
       </form>
     </section>
   );

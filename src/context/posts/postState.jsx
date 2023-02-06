@@ -22,7 +22,6 @@ export function PostState({ children }) {
       const res = await fetch('/api/posts/all');
       const data = await res.json();
 
-      console.log(data);
 
       dispatch({ type: SET_POSTS, payload: data });
     } catch (error) {
@@ -77,7 +76,6 @@ export function PostState({ children }) {
   }
 
   async function createPost(post) {
-    console.log(post);
     try {
       const res = await fetch('/api/posts', {
         method: 'POST',

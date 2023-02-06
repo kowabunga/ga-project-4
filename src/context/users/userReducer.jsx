@@ -40,6 +40,11 @@ export default (state, action) => {
     }
 
     case SIGNUP_ERROR:
+      return {
+        ...state,
+        signUpError: payload,
+      };
+
     case LOGIN_ERROR: {
       return {
         ...state,

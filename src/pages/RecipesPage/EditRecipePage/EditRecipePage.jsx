@@ -4,6 +4,8 @@ import { useRecipeContext } from '../../../context/recipes/recipeState';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import Spinner from '../../../components/Spinner/Spinner';
+
 export default function EditRecipePage() {
   const { user } = useUserContext();
   const { updateRecipe, getRecipe, recipe } = useRecipeContext();
@@ -14,6 +16,7 @@ export default function EditRecipePage() {
     description: '',
     imgUrl: '',
     user: '',
+    loading: false,
   });
 
   const navigate = useNavigate();
@@ -28,9 +31,11 @@ export default function EditRecipePage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setState({ ...state, loading: true });
 
     const recipeId = await updateRecipe(state, params.id);
     navigate(`/recipes/${recipeId}`);
+    setState({ ...state, loading: false });
   }
 
   useEffect(() => {
@@ -119,13 +124,17 @@ export default function EditRecipePage() {
             />
           </div>
 
-          <button
-            type='submit'
-            className='btn btn-primary'
-            data-bs-dismiss='modal'
-          >
-            Update
-          </button>
+          {state.loading ? (
+            <Spinner />
+          ) : (
+            <button
+              type='submit'
+              className='btn btn-primary'
+              data-bs-dismiss='modal'
+            >
+              Update
+            </button>
+          )}
         </form>
       </section>
     )

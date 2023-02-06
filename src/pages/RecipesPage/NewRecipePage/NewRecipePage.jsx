@@ -4,6 +4,8 @@ import { useRecipeContext } from '../../../context/recipes/recipeState';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Spinner from '../../../components/Spinner/Spinner';
+
 export default function NewRecipePage() {
   const { user } = useUserContext();
   const { createRecipe } = useRecipeContext();
@@ -14,6 +16,7 @@ export default function NewRecipePage() {
     description: '',
     imgUrl: '',
     user: '',
+    loading: false,
   });
 
   const navigate = useNavigate();
@@ -28,10 +31,11 @@ export default function NewRecipePage() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    console.log(state);
+    setState({ ...state, loading: true });
 
     const recipeId = await createRecipe(state);
     navigate(`/recipes/${recipeId}`);
+    setState({ ...state, loading: false });
   }
 
   useEffect(() => {
@@ -107,13 +111,17 @@ export default function NewRecipePage() {
             />
           </div>
 
-          <button
-            type='submit'
-            className='btn btn-primary'
-            data-bs-dismiss='modal'
-          >
-            Submit
-          </button>
+          {state.loading ? (
+            <Spinner />
+          ) : (
+            <button
+              type='submit'
+              className='btn btn-primary'
+              data-bs-dismiss='modal'
+            >
+              Submit
+            </button>
+          )}
         </form>
       </section>
     )

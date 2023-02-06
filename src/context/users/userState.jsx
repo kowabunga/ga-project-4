@@ -61,7 +61,7 @@ export function UserState({ children }) {
       }
       dispatch({ type: REMOVE_SIGNUP_ERROR, payload: null });
     } catch (error) {
-      dispatch({ type: LOGIN_ERROR, payload: error.message });
+      dispatch({ type: SIGNUP_ERROR, payload: error.message });
     }
   }
 

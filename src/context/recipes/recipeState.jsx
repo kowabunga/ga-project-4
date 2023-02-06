@@ -67,7 +67,6 @@ export function RecipeState({ children }) {
       const data = await res.json();
 
       dispatch({ type: SET_RECIPE, payload: data });
-      console.log(data);
       return data._id;
     } catch (error) {
       console.log(error);
@@ -94,7 +93,6 @@ export function RecipeState({ children }) {
   }
 
   async function deleteRecipe(id) {
-    console.log(id);
     try {
       const res = await fetch(`/api/recipes/${id}`, {
         method: 'DELETE',
@@ -113,7 +111,6 @@ export function RecipeState({ children }) {
 
   async function addRecipeComment(comment, recipeId) {
     try {
-      console.log(comment, recipeId);
 
       const res = await fetch(`/api/recipe/${recipeId}/comments`, {
         method: 'POST',
@@ -125,7 +122,6 @@ export function RecipeState({ children }) {
       });
 
       const data = await res.json();
-      console.log(data);
 
       dispatch({ type: SET_RECIPE, payload: data });
     } catch (error) {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useUserContext } from '../../context/users/userState';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import Spinner from '../../components/Spinner/Spinner';
 
 export default function SignUpPage() {
   const navigate = useNavigate();
@@ -12,6 +12,7 @@ export default function SignUpPage() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (token && !signUpError) navigate(-1);
@@ -20,20 +21,25 @@ export default function SignUpPage() {
     };
   }, [token]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
 
     if (password !== confirmPassword) {
       setError('Passwords must match. Please try again.');
     }
-    signUp({ name, email, password });
+    await signUp({ name, email, password });
+    setLoading(false);
   }
+
+  useEffect(() => {
+    setError(signUpError);
+  }, [signUpError]);
 
   return (
     <section className='p-4'>
-      {signUpError && (
-        <p className='text-center text-danger lead'>{signUpError}</p>
-      )}
+      {error && <p className='text-center text-danger lead'>{error}</p>}
+      <p>Loading -'{loading.toString()}'</p>
       <h3 className='text-center'>Create Account</h3>
       <form
         style={{ width: '470px' }}
@@ -88,9 +94,13 @@ export default function SignUpPage() {
             required
           />
         </div>
-        <button type='submit' className='btn btn-primary'>
-          Sign Up
-        </button>
+        {loading ? (
+          <Spinner text={'Signing up'} />
+        ) : (
+          <button type='submit' className='btn btn-primary'>
+            Sign Up
+          </button>
+        )}
         <small className='d-block mt-2'>
           Already have an account? <Link to='/login'>Login</Link>
         </small>

@@ -1,21 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useUserContext } from '../../context/users/userState';
+import Spinner from '../../components/Spinner/Spinner';
 
 export default function LoginPage() {
   const { logIn, token, loginError } = useUserContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
     await logIn({ email, password });
 
     if (loginError !== null) {
       navigate(-1);
     }
+
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -56,9 +61,14 @@ export default function LoginPage() {
               onChange={e => setPassword(e.target.value)}
             />
           </div>
-          <button type='submit' className='btn btn-primary'>
-            Login
-          </button>
+          {loading ? (
+            <Spinner text={'Logging in'} />
+          ) : (
+            <button type='submit' className='btn btn-primary'>
+              Login
+            </button>
+          )}
+
           <small className='d-block mt-2'>
             Don't have an account? <Link to='/signup'>Create Account</Link>
           </small>
