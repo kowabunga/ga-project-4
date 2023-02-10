@@ -8,7 +8,9 @@ import Spinner from '../../../components/Spinner/Spinner';
 
 export default function NewRecipePage() {
   const { user } = useUserContext();
+
   const { createRecipe } = useRecipeContext();
+
   const [state, setState] = useState({
     ingredients: '',
     title: '',
