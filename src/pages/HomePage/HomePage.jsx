@@ -68,6 +68,14 @@ export default function HomePage() {
             alt='Friend seating food together'
             className='img-fluid'
           />
+          Photo by{' '}
+          <a href='https://unsplash.com/@alexhaney?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>
+            Alex Haney
+          </a>{' '}
+          on{' '}
+          <a href='https://unsplash.com/photos/CAhjZmVk5H4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>
+            Unsplash
+          </a>
         </div>
         <div className='col-md-5'>
           <h2>Lets Cook and Eat Food Together!</h2>
