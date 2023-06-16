@@ -20,6 +20,11 @@ const blogSchema = new Schema({
     type: String,
     required: true,
   },
+  category: {
+    type: [String],
+    required: true,
+    enum: ['tips and tricks', 'stories', 'knowledge center'],
+  },
 });
 
 export default model('Post', blogSchema);

@@ -34,6 +34,11 @@ const recipeSchema = new Schema({
     ref: 'User',
     required: true,
   },
+  category: {
+    type: [String],
+    required: true,
+    enum: ['appetizer', 'breakfast', 'lunch', 'dinner', 'dessert'],
+  },
   comments: [Comment],
 });
 
